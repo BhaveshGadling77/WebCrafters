@@ -5,6 +5,7 @@ const text = ''
 function giveData() {
 
 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=Teriyaki Chicken Casserole`)
+fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
 .then((res) => res.json())
 .then((res)=>
     // showOnScreen(data)
@@ -20,7 +21,8 @@ function showOnScreen(some) {
         const name = document.createElement('h1')
         const instruction = document.createElement('pre')
         const tags = document.createElement('h3')
-        const bigdiv = document.querySelector('.jsmagic')
+       const bigdiv = document.querySelector('.hello')
+
         const ingredient = document.createElement('div')
         const ingredientHeading = document.createElement('h1')
         console.log(data)
