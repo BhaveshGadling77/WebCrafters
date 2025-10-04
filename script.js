@@ -1,17 +1,22 @@
+console.log("hello world");
 const tag1 = document.querySelector('h1')
 const query = document.querySelector('.query')
 const text = ''
 
 function giveData() {
-
-fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
+const searchValue = query.value.trim();
+fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
 .then((res) => res.json())
-.then((res)=>
-    // showOnScreen(data)
-    showOnScreen(res)
+.then((res)=>{
+    console.log(res)
+    if(res.meals){
+        showOnScreen(res);
+    } else{
+        alert("no reciept found");
+    }
+}
 )
 }
-
 function showOnScreen(some) {
     // data = data.meals4
     let data = some.meals[0]
