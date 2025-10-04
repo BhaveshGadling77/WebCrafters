@@ -2,12 +2,15 @@ const tag1 = document.querySelector('h1')
 const query = document.querySelector('.query')
 const text = ''
 
+function giveData() {
+
 fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
 .then((res) => res.json())
 .then((res)=>
     // showOnScreen(data)
     showOnScreen(res)
 )
+}
 
 function showOnScreen(some) {
     // data = data.meals4
