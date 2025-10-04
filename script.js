@@ -1,6 +1,8 @@
 const tag1 = document.querySelector('h1')
+const query = document.querySelector('.query')
+const text = ''
 
-fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Teriyaki Chicken Casserole')
+fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`)
 .then((res) => res.json())
 .then((res)=>
     // showOnScreen(data)
@@ -17,19 +19,35 @@ function showOnScreen(some) {
         const tags = document.createElement('h3')
         const bigdiv = document.querySelector('.hello')
         const ingredient = document.createElement('div')
+        const ingredientHeading = document.createElement('h1')
         console.log(data)
         image.src  = `${data.strMealThumb}`
         tags.textContent = `${data.strTags}`
         name.textContent = `${data.strMeal}`
         instruction.textContent = `${data.strInstructions}`
-        displayRecipe(data)
+        ingredientHeading.textContent = "Ingredients : "
+        ingredient.append(ingredientHeading)
+        displayIngredients(data, ingredient)
         div.append(image)
         div.append(name)
         div.append(instruction)
         div.append(tags)
+        div.append(ingredient)
         bigdiv.appendChild(div)
 }
 
-function displayRecipe(data) {
-    
+function displayIngredients(data, ingredient) {
+    for(let i = 1; i < 20; i++) {
+           let str = `strIngredient`
+            const p = document.createElement('p')
+            str += i;
+            if(!data[str]) {
+                continue
+            }
+            p.textContent =  `${data[str]}`
+        
+        ingredient.appendChild(p)
+            str = ''
+    }
 }
+
